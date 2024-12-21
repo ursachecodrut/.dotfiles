@@ -1,0 +1,62 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Format
+format = """
+$kubernetes\
+$conda\
+$directory\
+$git_branch\
+$line_break\
+$character\
+"""
+
+right_format="""
+${custom.workspace}\
+$cmd_duration\
+$time\
+"""
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+
+[directory]
+style = "green"
+truncate_to_repo = false
+
+[kubernetes]
+symbol = "⎈ "
+format = "[$symbol](bright-blue)[$context](red bold)[( \\($namespace\\))](blue) "
+disabled = false
+
+[git_branch]
+format = "[$symbol$branch]($style) "
+symbol = " "
+disabled = false
+
+[time]
+disabled = false
+time_format = "%R" # Hour:Minute Format
+style = "bg:#6272a4"
+format = '[ $time ]($style)'
+
+[cmd_duration]
+min_time = 500
+format = '[$duration](#6272a4) '
+
+[custom.workspace]
+command = '''
+current_dir=$(pwd)
+base_path="/Users/cursache/Developer/Work"
+if [[ "$current_dir" == "$base_path/"* ]]; then
+    user=$(echo "$current_dir" | sed -E "s|$base_path/([^/]+).*|\1|")
+    echo "$user"
+fi
+'''
+when = '''
+current_dir=$(pwd)
+base_path="/Users/cursache/Developer/Work"
+[[ "$current_dir" == "$base_path/"* ]]
+'''
+format = "[$output](bold yellow) "
