@@ -7,6 +7,7 @@ return {
 	},
 	config = function()
 		local lspconfig = require("lspconfig")
+		local mason_lspconfig = require("mason-lspconfig")
 
 		local keymap = vim.keymap -- for conciseness
 		local opts = { noremap = true, silent = true }
@@ -68,22 +69,6 @@ return {
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
 
-		local language_servers = {
-			"html",
-			"ts_ls",
-			"cssls",
-			"tailwindcss",
-			"emmet_ls",
-			"elixirls",
-			"terraformls",
-			"bashls",
-			"dockerls",
-			"hls",
-			"helm_ls",
-			"ruff",
-			"lua_ls",
-		}
-
 		local base_config = {
 			capabilities = capabilities,
 			on_attach = on_attach,
@@ -138,13 +123,15 @@ return {
 			},
 		}
 
-		-- Iterate over the language servers and set them up
-		for _, server in ipairs(language_servers) do
-			local config = base_config
-			if custom_servers[server] then
-				config = vim.tbl_extend("force", base_config, custom_servers[server])
-			end
-			lspconfig[server].setup(config)
-		end
+		-- Dynamically register servers installed via Mason
+		mason_lspconfig.setup_handlers({
+			function(server_name)
+				local config = base_config
+				if custom_servers[server_name] then
+					config = vim.tbl_deep_extend("force", base_config, custom_servers[server_name])
+				end
+				lspconfig[server_name].setup(config)
+			end,
+		})
 	end,
 }
