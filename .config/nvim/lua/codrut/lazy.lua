@@ -14,6 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	{ import = "codrut.plugins" },
 	{ import = "codrut.plugins.lsp" },
+	{ import = "codrut.plugins.colorscheme" },
 }, {
 	install = {
 		colorscheme = { "nightfly" },
