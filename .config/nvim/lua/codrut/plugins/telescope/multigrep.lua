@@ -1,7 +1,9 @@
 local pickers = require("telescope.pickers")
 local finders = require("telescope.finders")
+local ivy = require("telescope.themes").get_ivy()
 local make_entry = require("telescope.make_entry")
 local conf = require("telescope.config").values
+
 local M = {}
 
 local live_multigrep = function(opts)
@@ -29,7 +31,15 @@ local live_multigrep = function(opts)
 			---@diagnostic disable-next-line: deprecated
 			return vim.tbl_flatten({
 				args,
-				{ "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case" },
+				{
+					"--color=never",
+					"--no-heading",
+					"--with-filename",
+					"--line-number",
+					"--column",
+					"--smart-case",
+					"--hidden",
+				},
 			})
 		end,
 
@@ -49,7 +59,9 @@ local live_multigrep = function(opts)
 end
 
 M.setup = function()
-	vim.keymap.set("n", "<leader>fg", live_multigrep)
+	vim.keymap.set("n", "<leader>fg", function()
+		live_multigrep(ivy)
+	end)
 end
 
 return M

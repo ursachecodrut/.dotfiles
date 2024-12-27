@@ -30,6 +30,7 @@ return {
 			},
 			pickers = {
 				buffers = {
+					theme = "ivy",
 					sort_lastused = true,
 					mappings = {
 						i = {
@@ -42,11 +43,36 @@ return {
 				},
 				find_files = {
 					hidden = true,
+					theme = "ivy",
+				},
+				live_grep = {
+					theme = "ivy",
+					file_ignore_patterns = { "node_modules", ".git", ".venv" },
+					additional_args = function(_)
+						return { "--hidden" }
+					end,
+				},
+				grep_string = {
+					theme = "ivy",
+				},
+				oldfiles = {
+					theme = "ivy",
+				},
+				lsp_references = {
+					theme = "ivy",
+				},
+				lsp_definitions = {
+					theme = "ivy",
+				},
+				lsp_implementations = {
+					theme = "ivy",
+				},
+				lsp_type_definitions = {
+					theme = "ivy",
 				},
 			},
 		})
 
-		-- test
 		telescope.load_extension("fzf")
 
 		-- set keymaps
