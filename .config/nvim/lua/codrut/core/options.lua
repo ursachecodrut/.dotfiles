@@ -6,7 +6,6 @@ opt.swapfile = false -- disable swap files
 
 -- appearance
 opt.title = true -- show current text that you are editing
-opt.termguicolors = true -- set term gui colors
 opt.background = "dark" -- tell vim what the background color looks like
 opt.signcolumn = "yes"
 

@@ -7,7 +7,7 @@ return {
 
 		lualine.setup({
 			options = {
-				theme = "rose-pine",
+				theme = vim.g.colors_name,
 				extensions = { "nvim-tree" },
 			},
 			sections = {
