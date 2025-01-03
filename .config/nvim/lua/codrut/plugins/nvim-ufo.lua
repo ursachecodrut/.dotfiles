@@ -3,6 +3,9 @@ return {
 	dependencies = { "kevinhwang91/promise-async" },
 	opts = {
 		filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
+		provider_selector = function(bufnr, filetype, buftype)
+			return { "treesitter", "indent" }
+		end,
 	},
 	config = function(_, opts)
 		vim.api.nvim_create_autocmd("FileType", {
