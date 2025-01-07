@@ -10,7 +10,11 @@ config.font_size = 14.0
 -- Color scheme
 -- config.color_scheme = "Catppuccin Mocha"
 -- config.color_scheme = "rose-pine"
-config.color_scheme = "Tokyo Night"
+-- config.color_scheme = "Tokyo Night"
+config.color_scheme = "Kanagawa (Gogh)"
+
+-- Disable bell
+config.audible_bell = "Disabled"
 
 config.colors = {
 	cursor_bg = "white",
