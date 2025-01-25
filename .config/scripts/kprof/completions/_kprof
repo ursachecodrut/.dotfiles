@@ -1,0 +1,55 @@
+#compdef kprof
+
+_kprof() {
+  _arguments \
+    '1:Projects:->project' \
+    '2:Environments:->env' \
+    '3:Regions:->region'   \
+
+  case "$state" in
+    project)
+      _kprof_completions project
+      ;;
+    env)
+      _kprof_completions env
+      ;;
+    region)
+      _kprof_completions region
+      ;;
+  esac
+}
+
+
+_kprof_completions() {
+  # Get the current context
+  local curcontext="$curcontext" state line
+
+  # Initialize the associative array
+  typeset -A opt_args
+
+  local projects envs regions
+  local yaml_file="$HOME/.config/scripts/kprof/data/profiles.yaml"
+
+  if [[ ! -f "$yaml_file" ]]; then
+    return 1
+  fi
+
+  case "$1" in
+    project)
+      projects=($(yq ".projects | keys | .[]" "$yaml_file"))
+      _values "Projects" "${projects[@]}"
+      ;;
+    env)
+      local project="${words[2]}"
+      envs=($(yq ".projects.$project | keys | .[]" "$yaml_file"))
+      _values "Environments" "${envs[@]}"
+      ;;
+    region)
+      local project="${words[2]}"
+      local env="${words[3]}"
+      regions=($(yq ".projects.$project.$env | keys | .[]" "$yaml_file"))
+      _values "Regions" "${regions[@]}"
+      ;;
+  esac
+}
+

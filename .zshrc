@@ -104,5 +104,15 @@ function y() {
 	rm -f -- "$tmp"
 }
 
+# Vim mode
+bindkey -v
+
+# fpath for custom completions
+fpath=($HOME/.config/scripts/kprof/completions $fpath)
+
+# Setup completion
+autoload -U compinit
+compinit
+
 # Zoxide Initialization with cd as default command
 eval "$(zoxide init --cmd cd zsh)"
