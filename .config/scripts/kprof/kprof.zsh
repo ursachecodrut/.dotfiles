@@ -10,7 +10,7 @@ if ! command -v kubectl &> /dev/null; then
   return 1
 fi
 
-DEFAULT_YAML_FILE="$HOME/.config/scripts/kprof/data/profiles.yaml"
+DEFAULT_YAML_FILE="$HOME/.config/adobe/profiles.yaml"
 
 kprof() {
   if [[ "$1" == "--help" || "$1" == "help" ]]; then

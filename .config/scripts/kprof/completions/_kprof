@@ -28,7 +28,7 @@ _kprof_completions() {
   typeset -A opt_args
 
   local projects envs regions
-  local yaml_file="$HOME/.config/scripts/kprof/data/profiles.yaml"
+  local yaml_file="$HOME/.config/adobe/profiles.yaml"
 
   if [[ ! -f "$yaml_file" ]]; then
     return 1
