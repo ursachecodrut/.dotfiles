@@ -1,55 +1,41 @@
 #compdef kprof
 
-_kprof() {
-  _arguments \
-    '1:Projects:->project' \
-    '2:Environments:->env' \
-    '3:Regions:->region'   \
+typeset -A opt_args
 
-  case "$state" in
-    project)
-      _kprof_completions project
-      ;;
-    env)
-      _kprof_completions env
-      ;;
-    region)
-      _kprof_completions region
-      ;;
-  esac
-}
+yaml_file="$HOME/.config/adobe/profiles.yaml"
+ret=1
 
+_arguments -C \
+  '1:project:->projects' \
+  '2:env:->envs' \
+  '3:region:->regions' \
+  && ret=0
 
-_kprof_completions() {
-  # Get the current context
-  local curcontext="$curcontext" state line
+case "$state" in
+  projects)
+    local projects; 
+    projects=($(yq ".projects | keys | .[]" "$yaml_file"))
 
-  # Initialize the associative array
-  typeset -A opt_args
+    # _describe -t projects 'project' projects && ret=0
+    _values 'projects' "${projects[@]}" && ret=0
+    ;;
+  envs)
+    local project=$words[2]
+    local envs; 
+    envs=($(yq ".projects.$project | keys | .[]" "$yaml_file"))
 
-  local projects envs regions
-  local yaml_file="$HOME/.config/adobe/profiles.yaml"
+    # _describe -t envs 'env' envs && ret=0
+    _values 'envs' "${envs[@]}" && ret=0
+    ;;
+  regions)
+    local project=$words[2]
+    local env=$words[3]
+    local regions; 
+    regions=($(yq ".projects.$project.$env | keys | .[]" "$yaml_file"))
 
-  if [[ ! -f "$yaml_file" ]]; then
-    return 1
-  fi
+    # _describe -t regions 'region' regions && ret=0
+    _values 'regions' "${regions[@]}" && ret=0
+    ;;
+esac;
 
-  case "$1" in
-    project)
-      projects=($(yq ".projects | keys | .[]" "$yaml_file"))
-      _values "Projects" "${projects[@]}"
-      ;;
-    env)
-      local project="${words[2]}"
-      envs=($(yq ".projects.$project | keys | .[]" "$yaml_file"))
-      _values "Environments" "${envs[@]}"
-      ;;
-    region)
-      local project="${words[2]}"
-      local env="${words[3]}"
-      regions=($(yq ".projects.$project.$env | keys | .[]" "$yaml_file"))
-      _values "Regions" "${regions[@]}"
-      ;;
-  esac
-}
-
+return ret
