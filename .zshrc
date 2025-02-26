@@ -2,7 +2,7 @@
 
 # Set Zsh and Oh-My-Zsh
 export ZSH="$HOME/.oh-my-zsh"
-plugins=(asdf git zsh-syntax-highlighting zsh-autosuggestions kubectl)
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions kubectl)
 source $ZSH/oh-my-zsh.sh
 
 # Paths and Environment Variables
@@ -14,7 +14,10 @@ export PNPM_HOME="$HOME/Library/pnpm"
 export BUN_INSTALL="$HOME/.bun"
 export BAT_THEME="Catppuccin Mocha"
 export WEZTERM_PATH="/Applications/WezTerm.app/Contents/MacOS"
-export PATH="$HOME/.local/bin:$PNPM_HOME:$BUN_INSTALL/bin:$WEZTERM_PATH:$PATH"
+export ADOBE_CONFIG_PATH="$HOME/.config/adobe/bin"
+export LOCAL_BIN_PATH="$HOME/.local/bin"
+export ASDF_DIR="$HOME/.asdf"
+export PATH="$LOCAL_BIN_PATH:$ADOBE_CONFIG_PATH:$PNPM_HOME:$BUN_INSTALL/bin:$WEZTERM_PATH:$ASDF_DIR/shims:$PATH"
 
 # Default Editor and Terminal
 export EDITOR="nvim"
@@ -38,7 +41,8 @@ alias klamdev="klam-ext ee-depencencies-dev"
 alias klamprod="klam-ext ee-dependencies-prd"
 
 # Kubernetes and Docker Aliases
-alias kcd="kubectl config get-contexts -o name | fzf --height=20 | xargs kubectl config use-context"
+alias kctx="kubectl config get-contexts -o name | fzf --height=20 | xargs kubectl config use-context"
+alias kcd="kubectl config set-context --current --namespace"
 alias dc="docker-compose"
 
 # Git Aliases
