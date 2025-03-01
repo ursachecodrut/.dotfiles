@@ -23,6 +23,7 @@ return {
 						["<A-k>"] = actions.preview_scrolling_up,
 					},
 				},
+				file_ignore_patterns = { "node_modules", ".git" },
 			},
 			extensions = {
 				fzf = {},
@@ -38,6 +39,9 @@ return {
 							["<c-d>"] = actions.delete_buffer,
 						},
 					},
+				},
+				find_files = {
+					hidden = true,
 				},
 			},
 		})
