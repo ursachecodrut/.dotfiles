@@ -7,6 +7,7 @@ set -e
 VIAL_QMK_PATH=~/vial-qmk
 TARGET_DIR=$VIAL_QMK_PATH/keyboards/crkbd/keymaps/kreker71
 CURRENT_DIR=$(pwd)
+FIRMWARE_UF2="$VIAL_QMK_PATH/.build/crkbd_rev1_kreker71_promicro_rp2040.uf2"
 
 # Check if vial-qmk directory exists
 if [ ! -d "$VIAL_QMK_PATH" ]; then
@@ -37,6 +38,31 @@ git submodule update --init --recursive
 echo "Compiling firmware..."
 make crkbd:kreker71
 
-echo "Done! Your firmware has been compiled."
-echo "The compiled firmware should be available at:"
-echo "$VIAL_QMK_PATH/.build/crkbd_rev1_kreker71.hex" 
+# Check if firmware was actually built
+if [ ! -f "$FIRMWARE_UF2" ]; then
+    echo "Error: Firmware file not found at $FIRMWARE_UF2"
+    echo "Compilation may have failed."
+    exit 1
+fi
+
+# Create build directory if it doesn't exist
+BUILD_DIR="$CURRENT_DIR/build"
+mkdir -p "$BUILD_DIR"
+
+# Copy compiled firmware to build directory
+echo "Copying compiled firmware to build directory..."
+if ! cp "$FIRMWARE_UF2" "$BUILD_DIR/"; then
+    echo "Error: Failed to copy firmware file to $BUILD_DIR"
+    exit 1
+fi
+
+echo "Done! Your firmware has been compiled and copied to the build directory."
+echo "Firmware files:"
+echo "- $(basename "$FIRMWARE_UF2") (in $BUILD_DIR)"
+
+# Verify the copy was successful
+if [ ! -f "$BUILD_DIR/$(basename "$FIRMWARE_UF2")" ]; then
+    echo "Error: Firmware file not found in build directory after copy"
+    exit 1
+fi
+
