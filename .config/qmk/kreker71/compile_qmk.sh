@@ -56,6 +56,9 @@ if ! cp "$FIRMWARE_UF2" "$BUILD_DIR/"; then
     exit 1
 fi
 
+# Get the absolute path of the UF2 file in the build directory
+UF2_BUILD_PATH="$BUILD_DIR/$(basename "$FIRMWARE_UF2")"
+
 echo "Done! Your firmware has been compiled and copied to the build directory."
 echo "Firmware files:"
 echo "- $(basename "$FIRMWARE_UF2") (in $BUILD_DIR)"

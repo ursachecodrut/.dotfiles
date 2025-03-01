@@ -58,6 +58,9 @@ enum custom_keycodes {
 #define KC_HYPR HYPR(KC_NO)         // Hyper key (Ctrl+Alt+Shift+GUI)
 #define HYPR_SPC HYPR_T(KC_SPC)     // Hyper when held, Space when tapped
 
+// Print screen area selection
+#define MAC_SCRN LGUI(LSFT(LCTL(KC_4)))  // Copy portion of screen
+
 /* 
  * Keymap Matrices
  * --------------
@@ -103,19 +106,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     /* Raise Layer: Navigation and Media Controls
-     * ,------------------------------------------.                     ,-------------------------------------------.
-     * |       |Del   |      |   _  |   +  | PgUp |                     |      |   \  |   |  |      |      |        |
-     * |-------+------+------+------+------+------|                     |------+------+------+------+------+--------|
-     * |       |Home  |End   |   -  |   =  | PgDn |                     |Left  |Down  |Up    |Right |Menu  |        |
-     * |-------+------+------+------+------+------|                     |------+------+------+------+------+--------|
-     * |       |  <   |  >   |Copy  |Paste |  ;   |                     |Play  |Prev  |Next  |Vol-  |Vol+  |        |
-     * |-------+------+------+------+------+------+------'       `------+------+------+------+------+------+--------'
+     * ,------------------------------------------.                     ,---------------------------------------------.
+     * |       |Del   |      |   _  |   +  | PgUp |                     |      |   \  |   |  |      |MAC_SCRN|        |
+     * |-------+------+------+------+------+------|                     |------+------+------+------+--------+--------|
+     * |       |Home  |End   |   -  |   =  | PgDn |                     |Left  |Down  |Up    |Right |Menu    |        |
+     * |-------+------+------+------+------+------|                     |------+------+------+------+--------+--------|
+     * |       |  <   |  >   |Copy  |Paste |  ;   |                     |Play  |Prev  |Next  |Vol-  |Vol+    |        |
+     * |-------+------+------+------+------+------+------'       `------+------+------+------+------+--------+--------'
      *                              |Ctl/Esc|     |      |       |Raise |KC_HYPR|      |
      *                              `--------------------'       `--------------------'
      */
 
     [_RAISE] = LAYOUT( \
-        _______, KC_DEL,  XXXXXXX, KC_UNDS, KC_PLUS, KC_PGUP,                   XXXXXXX, KC_BSLS, KC_PIPE, XXXXXXX, XXXXXXX, _______, \
+        _______, KC_DEL,  XXXXXXX, KC_UNDS, KC_PLUS, KC_PGUP,                   XXXXXXX, KC_BSLS, KC_PIPE, XXXXXXX, MAC_SCRN, _______, \
         _______, KC_HOME, KC_END,  KC_MINS, KC_EQL,  KC_PGDN,                   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_APP,  _______, \
         _______, KC_LT,   KC_GT,   KC_COPY, KC_PSTE, KC_SCLN,                   KC_MPLY, KC_MPRV, KC_MNXT, KC_VOLD, KC_VOLU, _______, \
                                             CTL_ESC, KC_TRNS, XXXXXXX,  RAISE,   KC_HYPR, KC_TRNS                                     \
@@ -125,7 +128,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ,------------------------------------------.                     ,-------------------------------------------.
      * |       |  F1  |  F2  |  F3  |  F4  |  F5  |                     |  F6  |  F7  |  F8  |  F9  | F10  |        |
      * |-------+------+------+------+------+------|                     |------+------+------+------+------+--------|
-     * |       |  F11 |  F12 |      ||      |                     |      |      |      |      |      |        |
+     * |       |  F11 |  F12 |      |      |      |                     |      |      |      |      |      |        |
      * |-------+------+------+------+------+------|                     |------+------+------+------+------+--------|
      * |       | Caps |      |      |      |      |                     |      |      |      |      |Reset |        |
      * |-------+------+------+------+------+------+------'       `------+------+------+------+------+------+--------'
