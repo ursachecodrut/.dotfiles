@@ -13,7 +13,8 @@ export NVM_DIR="$HOME/.nvm"
 export PNPM_HOME="$HOME/Library/pnpm"
 export BUN_INSTALL="$HOME/.bun"
 export BAT_THEME="Catppuccin Mocha"
-export PATH="$HOME/.local/bin:$PNPM_HOME:$BUN_INSTALL/bin:$PATH"
+export WEZTERM_PATH="/Applications/WezTerm.app/Contents/MacOS"
+export PATH="$HOME/.local/bin:$PNPM_HOME:$BUN_INSTALL/bin:$WEZTERM_PATH:$PATH"
 
 # Default Editor and Terminal
 export EDITOR="nvim"

@@ -1,8 +1,13 @@
-# Codrut dotfiles
+# This is the first slide
 
-- neovim
-- tmux
-- zsh
-- zsh
-- aerospace
-- starship
+Hello
+
+# This is the second slide
+
+```js
+console.log("Hello");
+```
+
+# That was all
+
+Thank you!

@@ -61,6 +61,10 @@ return {
 
 		-- used to enable autocompletion (assign to every lsp server config)
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
+		capabilities.textDocument.foldingRange = {
+			dynamicRegistration = true,
+			lineFoldingOnly = true,
+		}
 
 		-- Change the Diagnostic symbols in the sign column (gutter)
 		local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
