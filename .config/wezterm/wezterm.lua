@@ -9,7 +9,9 @@ config.font_size = 14.0
 
 -- Color scheme
 -- config.color_scheme = "Catppuccin Mocha"
-config.color_scheme = "rose-pine"
+-- config.color_scheme = "rose-pine"
+config.color_scheme = "Tokyo Night"
+
 config.colors = {
 	cursor_bg = "white",
 	cursor_border = "white",
