@@ -68,124 +68,83 @@ return {
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
 
-		-- configure html server
-		lspconfig["html"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
+		local language_servers = {
+			"html",
+			"ts_ls",
+			"cssls",
+			"tailwindcss",
+			"emmet_ls",
+			"elixirls",
+			"terraformls",
+			"bashls",
+			"dockerls",
+			"hls",
+			"helm_ls",
+			"ruff",
+			"lua_ls",
+		}
 
-		-- configure typescript server with plugin
-		lspconfig["ts_ls"].setup({
+		local base_config = {
 			capabilities = capabilities,
 			on_attach = on_attach,
-		})
+		}
 
-		-- configure css server
-		lspconfig["cssls"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		-- configure tailwindcss server
-		lspconfig["tailwindcss"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		-- configure emmet language server
-		lspconfig["emmet_ls"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-			filetypes = {
-				"html",
-				"typescriptreact",
-				"javascriptreact",
-				"css",
-				"sass",
-				"scss",
-				"less",
-				"svelte",
-				"heex",
-				"eex",
-			},
-		})
-
-		-- configure elixir language server
-		lspconfig["elixirls"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-			cmd = { "elixir-ls" },
-		})
-
-		-- configure for terraform language server
-		lspconfig["terraformls"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		-- bash language server
-		lspconfig["bashls"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		-- dockerfile language server
-		lspconfig["dockerls"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		-- haskell language server
-		lspconfig["hls"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		-- helm language server
-		lspconfig["helm_ls"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-			settings = {
-				["helm-ls"] = {
-					yamlls = {
-						enable = true,
-						path = "yaml-language-server",
-						logLevel = "debug",
-						config = {
-							schemas = {
-								["/Users/cursache/.config/nvim/schemas/rollout.schema.json"] = "k8s/helm/**/values.yaml",
+		-- List of servers with custom configurations
+		local custom_servers = {
+			lua_ls = {
+				settings = {
+					Lua = {
+						diagnostics = {
+							globals = { "vim" },
+						},
+						workspace = {
+							library = {
+								[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+								[vim.fn.stdpath("config") .. "/lua"] = true,
 							},
 						},
 					},
 				},
 			},
-		})
-
-		-- ruff language server for python
-		lspconfig["ruff"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		-- configure lua server (with special settings)
-		lspconfig["lua_ls"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-			settings = { -- custom settings for lua
-				Lua = {
-					-- make the language server recognize "vim" global
-					diagnostics = {
-						globals = { "vim" },
-					},
-					workspace = {
-						-- make language server aware of runtime files
-						library = {
-							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-							[vim.fn.stdpath("config") .. "/lua"] = true,
+			helm_ls = {
+				settings = {
+					["helm-ls"] = {
+						yamlls = {
+							enable = true,
+							path = "yaml-language-server",
+							logLevel = "debug",
+							config = {
+								schemas = {
+									["/Users/cursache/.config/nvim/schemas/rollout.schema.json"] = "k8s/helm/**/values.yaml",
+								},
+							},
 						},
 					},
 				},
 			},
-		})
+			emmet_ls = {
+				filetypes = {
+					"html",
+					"typescriptreact",
+					"javascriptreact",
+					"css",
+					"sass",
+					"scss",
+					"less",
+					"svelte",
+					"heex",
+					"eex",
+				},
+			},
+		}
+
+		-- Iterate over the language servers and set them up
+		for _, server in ipairs(language_servers) do
+			local config = base_config
+			if custom_servers[server] then
+				config = vim.tbl_extend("force", base_config, custom_servers[server])
+			end
+			lspconfig[server].setup(config)
+		end
 	end,
 }
