@@ -2,7 +2,7 @@
 
 # Set Zsh and Oh-My-Zsh
 export ZSH="$HOME/.oh-my-zsh"
-plugins=(asdf git z zsh-syntax-highlighting zsh-autosuggestions kubectl)
+plugins=(asdf git zsh-syntax-highlighting zsh-autosuggestions kubectl)
 source $ZSH/oh-my-zsh.sh
 
 # Paths and Environment Variables
@@ -14,6 +14,10 @@ export PNPM_HOME="$HOME/Library/pnpm"
 export BUN_INSTALL="$HOME/.bun"
 export BAT_THEME="Catppuccin Mocha"
 export PATH="$HOME/.local/bin:$PNPM_HOME:$BUN_INSTALL/bin:$PATH"
+
+# Default Editor and Terminal
+export EDITOR="nvim"
+export TERM="xterm-256color"
 
 # Load tools and completions
 [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
@@ -43,7 +47,12 @@ alias gi="git init"
 
 # General Aliases
 alias ll="eza -l --icons --group-directories-first --time-style long-iso"
+alias la="eza -la --icons --group-directories-first --time-style long-iso"
+alias tree="ll --tree"
 alias cat="bat"
+alias vim="nvim"
+alias vi="nvim"
+alias v="nvim"
 
 # fzf Configuration
 eval "$(fzf --zsh)"
@@ -84,3 +93,15 @@ if command -v klam-ext &> /dev/null; then
     eval "$(env klam-ext zsh-integration)";
 fi
 
+# Yazi auto cd to directory
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
+# Zoxide Initialization with cd as default command
+eval "$(zoxide init --cmd cd zsh)"
