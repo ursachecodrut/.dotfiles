@@ -33,4 +33,7 @@ map("n", "<leader>tx", ":tabclose<CR>", opts) -- close current tab
 map("n", "<leader>tn", ":tabn<CR>", opts) -- go to next tab
 map("n", "<leader>tp", ":tabp<CR>", opts) -- go to previous tab
 
-map("n", "<leader><leader>s", "<cmd>source %<CR>") -- source current file
+-- fast reload
+map("n", "<leader><leader>x", "<cmd>source %<CR>") -- source current file
+map("n", "<leader>x", ":.lua<CR>")
+map("v", "<leader>x", ":lua<CR>")
