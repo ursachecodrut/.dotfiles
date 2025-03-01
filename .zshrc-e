@@ -34,8 +34,8 @@ export KERL_CONFIGURE_OPTIONS="--enable-dynamic-ssl-lib --enable-kernel-poll --e
 
 # Adobe-specific Aliases
 alias valutbb='export VAULT_ADDR="https://vault-amer.adobe.net" vault login -method=oidc -namespace=dx_blackbird'
-alias klamdev="klam-ext ee-depencencies-dev"
-alias klamprod="klam-ext ee-dependencies-prd"
+alias klamdev="klam-ext ee-dep-dev"
+alias klamprod="klam-ext ee-dep-prod"
 
 # Kubernetes and Docker Aliases
 alias kcd="kubectl config get-contexts -o name | fzf --height=20 | xargs kubectl config use-context"
@@ -97,7 +97,7 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # klam-ext Integration
 export KLAM_BROWSER="Google Chrome"
-export KLAM_EXT_PROFILE_PREFIX=""
+# export KLAM_EXT_PROFILE_PREFIX=""
 if command -v klam-ext &> /dev/null; then
     eval "$(env klam-ext zsh-integration)";
 fi
@@ -124,21 +124,4 @@ compinit
 
 # Zoxide Initialization with cd as default command
 eval "$(zoxide init --cmd cd zsh)"
-
-
-[ -f "/Users/cursache/.ghcup/env" ] && . "/Users/cursache/.ghcup/env" # ghcup-env
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/cursache/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/cursache/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/cursache/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/cursache/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
 
