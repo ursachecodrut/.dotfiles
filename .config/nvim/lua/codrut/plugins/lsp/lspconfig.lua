@@ -125,6 +125,9 @@ return {
 					"eex",
 				},
 			},
+			elixirls = {
+				cmd = { "elixir-ls" },
+			},
 		}
 
 		-- Dynamically register servers installed via Mason
