@@ -55,8 +55,11 @@ enum custom_keycodes {
 #define CTL_ESC  LCTL_T(KC_ESC)     // Control when held, Escape when tapped
 
 // Hyper key definitions
-#define KC_HYPR HYPR(KC_NO)         // Hyper key (Ctrl+Alt+Shift+GUI)
+#define KC_HYPR  HYPR(KC_NO)         // Hyper key (Ctrl+Alt+Shift+GUI)
 #define HYPR_SPC HYPR_T(KC_SPC)     // Hyper when held, Space when tapped
+
+#define KC_LCA  LCA(KC_NO)           // Navigation key for Raycast Window Management (Ctrl+Alt)
+#define LCA_SPC LCA_T(KC_SPC)       // LCA when held, Space when tapped
 
 // Print screen area selection
 #define MAC_SCRN LGUI(LSFT(LCTL(KC_4)))  // Copy portion of screen
@@ -77,14 +80,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |--------+------+------+------+------+------|                    |------+------+------+------+------+--------|
      * | Shift  |   Z  |   X  |   C  |   V  |   B  |                    |   N  |   M  |   ,  |   .  |   /  |  Fn    |
      * `--------+------+------+------+------+------+-----'       `------+------+------+------+------+------+--------'
-     *                              | Ctrl |Gui/⌘ |Lower/Tab|    |Raise/Bsp| Hyper/Space| Shift|
+     *                              | Ctrl |Gui/⌘ |Lower/Tab|    |Raise/Bsp| LCA/Space| Shift|
      *                              `--------------------'       `--------------------'
      */
     [_QWERTY] = LAYOUT( \
         KC_TAB,         KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_DEL,  \
         OSM(MOD_LALT),  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                     KC_H,    KC_J,    KC_K,    KC_L,    KC_QUOT, OSM_AGR, \
         OSM(MOD_LSFT),  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                     KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, OSL_FUN, \
-                                          OSM_LCTL, GUI_ENT, LOW_TAB,     RSE_BSP, HYPR_SPC, OSM_SFT                                        \
+                                          OSM_LCTL, GUI_ENT, LOW_TAB,     RSE_BSP, LCA_SPC, OSM_SFT                                        \
     ),
 
     /* Lower Layer: Numbers and Symbols
@@ -113,7 +116,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |-------+------+------+------+------+------|                     |------+------+------+------+--------+--------|
      * |       |  <   |  >   |Copy  |Paste |  ;   |                     |Play  |Prev  |Next  |Vol-  |Vol+    |        |
      * |-------+------+------+------+------+------+------'       `------+------+------+------+------+--------+--------'
-     *                              |Ctl/Esc|     |      |       |Raise |KC_HYPR|      |
+     *                              |Ctl/Esc|     |      |       |Raise |KC_LCA|      |
      *                              `--------------------'       `--------------------'
      */
 
@@ -121,7 +124,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_DEL,  XXXXXXX, KC_UNDS, KC_PLUS, KC_PGUP,                   XXXXXXX, KC_BSLS, KC_PIPE, XXXXXXX, MAC_SCRN, _______, \
         _______, KC_HOME, KC_END,  KC_MINS, KC_EQL,  KC_PGDN,                   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_APP,  _______, \
         _______, KC_LT,   KC_GT,   KC_COPY, KC_PSTE, KC_SCLN,                   KC_MPLY, KC_MPRV, KC_MNXT, KC_VOLD, KC_VOLU, _______, \
-                                            CTL_ESC, KC_TRNS, XXXXXXX,  RAISE,   KC_HYPR, KC_TRNS                                     \
+                                            CTL_ESC, KC_TRNS, XXXXXXX,  RAISE,   KC_LCA, KC_TRNS                                     \
     ),
 
     /* Function Layer: F-keys and System Controls

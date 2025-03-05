@@ -37,6 +37,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // This determines how long a key can be held before it registers as a "hold" action.
 #define TAPPING_TERM 200
 
+#define TAPPING_FORCE_HOLD
+
 // Sets the time window (in milliseconds) for triggering combo key actions.
 // A low value ensures the keys must be pressed simultaneously to activate the combo.
 #define COMBO_TERM 50
