@@ -26,9 +26,6 @@ eval "$(zoxide init --cmd cd zsh)"
 # Starship Prompt
 eval "$(starship init zsh)"
 
-# fzf
-eval "$(fzf --zsh)"
-
 # klam-ext Integration
 if command -v klam-ext &> /dev/null; then
     eval "$(env klam-ext zsh-integration)";
