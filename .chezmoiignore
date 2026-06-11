@@ -1,6 +1,8 @@
 # Files listed here are NOT applied on the matching machine.
 # Add machine-only files inside the opposite block.
 
+README.md
+
 # OS-specific install scripts only run on their OS.
 {{ if ne .chezmoi.os "darwin" }}
 darwin-install-packages.sh
