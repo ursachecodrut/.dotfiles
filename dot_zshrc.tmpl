@@ -10,7 +10,7 @@ export VISUAL=nvim
 export TERM=xterm-256color
 export ERL_AFLAGS="-kernel shell_history enabled"
 export GPG_TTY=$(tty)
-export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
+
 
 ulimit -n 8192
 
@@ -46,7 +46,7 @@ alias gap='git add -p'
 alias cat='bat'
 
 {{ if eq .machine "macos-pdq" -}}
-# macos-pdq (work) only
+export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
 {{ else if eq .machine "macos-personal" -}}
 # macos-personal only
 {{ end -}}

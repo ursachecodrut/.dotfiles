@@ -1,73 +1,69 @@
-# All Homebrew packages, declared per machine.
-# shared = installed everywhere; machine sections add on top.
-# Seeded from this machine's current install -- re-sort as needed.
 packages:
-  shared:
-    taps: []
-    brews:
-      - bat
-      - beancount
-      - btop
-      - chezmoi
-      - csvkit
-      - eza
-      - fastfetch
-      - fd
-      - fzf
-      - gh
-      - gum
-      - hf
-      - htop
-      - imagemagick
-      - mise
-      - ncdu
-      - neovim
-      - python@3.12
-      - qemu
-      - ripgrep
-      - starship
-      - tpm
-      - tree-sitter-cli
-      - typst
-      - unbound
-      - wireguard-tools
-      - zoxide
-      - zsh-autosuggestions
-      - zsh-syntax-highlighting
-    casks:
-      - aerospace
-      - aldente
-      - android-platform-tools
-      - appcleaner
-      - bitwarden
-      - firefox
-      - flameshot
-      - ghostty
-      - iterm2
-      - kitty
-      - obsidian
-      - raycast
-      - stats
-      - tailscale-app
-      - visual-studio-code
-  macos-pdq:
-    taps:
-      - withgraphite/tap
-    brews:
-      - colima
-      - docker
-      - docker-compose
-      - withgraphite/tap/graphite
-    casks:
-      - bruno
-      - clickhouse
-      - linear
-      - postman
-      - slack
-      - zoom
-  macos-personal:
-    taps: []
-    brews: []
-    casks:
-      - discord
-      - signal
+  darwin:
+    shared:
+      taps: []
+      brews:
+        - bat
+        - beancount
+        - btop
+        - chezmoi
+        - csvkit
+        - eza
+        - fastfetch
+        - fd
+        - fzf
+        - gh
+        - gum
+        - hf
+        - htop
+        - imagemagick
+        - mise
+        - ncdu
+        - neovim
+        - python@3.12
+        - qemu
+        - ripgrep
+        - starship
+        - tpm
+        - tree-sitter-cli
+        - typst
+        - unbound
+        - wireguard-tools
+        - zoxide
+        - zsh-autosuggestions
+        - zsh-syntax-highlighting
+      casks:
+        - aerospace
+        - aldente
+        - android-platform-tools
+        - appcleaner
+        - bitwarden
+        - firefox
+        - flameshot
+        - kitty
+        - obsidian
+        - raycast
+        - stats
+        - tailscale-app
+        - visual-studio-code
+    macos-pdq:
+      taps:
+        - withgraphite/tap
+      brews:
+        - colima
+        - docker
+        - docker-compose
+        - withgraphite/tap/graphite
+      casks:
+        - bruno
+        - clickhouse
+        - linear
+        - postman
+        - slack
+        - zoom
+    macos-personal:
+      taps: []
+      brews: []
+      casks:
+        - discord
+        - signal

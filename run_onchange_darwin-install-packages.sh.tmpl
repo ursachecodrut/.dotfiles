@@ -4,18 +4,14 @@
 # packages.yaml hash: {{ include ".chezmoidata/packages.yaml" | sha256sum }}
 set -eufo pipefail
 
-{{ $m := index .packages .machine -}}
+{{ $d := index .packages "darwin" | default (dict) -}}
+{{ $shared := index $d "shared" | default (dict) -}}
+{{ $m := index $d .machine | default (dict) -}}
 brew bundle --file=/dev/stdin <<EOF
-{{ range .packages.shared.taps }}tap {{ . | quote }}
+{{ range concat (index $shared "taps" | default list) (index $m "taps" | default list) }}tap {{ . | quote }}
 {{ end -}}
-{{ range .packages.shared.brews }}brew {{ . | quote }}
+{{ range concat (index $shared "brews" | default list) (index $m "brews" | default list) }}brew {{ . | quote }}
 {{ end -}}
-{{ range .packages.shared.casks }}cask {{ . | quote }}
-{{ end -}}
-{{ range $m.taps }}tap {{ . | quote }}
-{{ end -}}
-{{ range $m.brews }}brew {{ . | quote }}
-{{ end -}}
-{{ range $m.casks }}cask {{ . | quote }}
+{{ range concat (index $shared "casks" | default list) (index $m "casks" | default list) }}cask {{ . | quote }}
 {{ end -}}
 EOF
