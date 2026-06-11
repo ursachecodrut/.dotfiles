@@ -1,0 +1,51 @@
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/share:$PATH"
+export EDITOR=nvim
+export VISUAL=nvim
+export TERM=xterm-256color
+export ERL_AFLAGS="-kernel shell_history enabled"
+export GPG_TTY=$(tty)
+export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
+
+ulimit -n 8192
+
+autoload -Uz compinit
+compinit
+
+HISTFILE=${HISTFILE:-$HOME/.zsh_history}
+HISTSIZE=50000
+SAVEHIST=50000
+setopt HIST_IGNORE_DUPS HIST_IGNORE_SPACE SHARE_HISTORY INC_APPEND_HISTORY
+
+alias ls='eza'
+alias ll="eza --long --icons --time-style='long-iso'"
+alias la='ll -a'
+alias tree='eza --tree'
+
+alias v='nvim'
+alias vim='nvim'
+alias vi='nvim'
+
+alias g='git'
+alias gco='git checkout'
+alias gs='git status'
+alias gcm='git commit -m'
+alias gl='git log --oneline --decorate'
+alias gll='git log --oneline --decorate --graph'
+alias gpl='git pull'
+alias gplr='git pull --rebase'
+alias gcl='git clone'
+alias ga='git add .'
+alias gap='git add -p'
+
+alias cat='bat'
+
+source <(fzf --zsh)
+eval "$(starship init zsh)"
+eval "$(zoxide init --cmd cd zsh)"
+eval "$(mise activate zsh)"
