@@ -34,18 +34,17 @@ packages:
         - zsh-syntax-highlighting
       casks:
         - aerospace
+        - bruno
         - aldente
-        - android-platform-tools
         - appcleaner
         - bitwarden
         - firefox
-        - flameshot
         - kitty
         - obsidian
         - raycast
         - stats
-        - tailscale-app
         - visual-studio-code
+        - android-platform-tools
     macos-pdq:
       taps:
         - withgraphite/tap
@@ -55,15 +54,14 @@ packages:
         - docker-compose
         - withgraphite/tap/graphite
       casks:
-        - bruno
+        - discord
+        - tailscale-app
         - clickhouse
         - linear
-        - postman
         - slack
         - zoom
     macos-personal:
       taps: []
       brews: []
       casks:
-        - discord
         - signal
