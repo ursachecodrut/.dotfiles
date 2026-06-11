@@ -36,7 +36,6 @@ or list machine-only files in `.chezmoiignore` so other machines skip them.
 .chezmoi.toml.tmpl                            prompts machine name on init
 .chezmoidata/packages.yaml                    all packages, per OS + per machine
 run_onchange_darwin-install-packages.sh.tmpl  auto brew bundle when yaml changes
-run_onchange_windows-install-packages.ps1.tmpl  winget equivalent (stub)
 .chezmoiignore                                per-OS/per-machine exclusions
 dot_*                                         the actual dotfiles (.tmpl = templated)
 ```

@@ -7,9 +7,6 @@ README.md
 {{ if ne .chezmoi.os "darwin" }}
 darwin-install-packages.sh
 {{ end }}
-{{ if ne .chezmoi.os "windows" }}
-windows-install-packages.ps1
-{{ end }}
 
 {{ if ne .machine "macos-pdq" }}
 # work-only files, e.g.:
