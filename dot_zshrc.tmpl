@@ -45,6 +45,12 @@ alias gap='git add -p'
 
 alias cat='bat'
 
+{{ if eq .machine "macos-pdq" -}}
+# macos-pdq (work) only
+{{ else if eq .machine "macos-personal" -}}
+# macos-personal only
+{{ end -}}
+
 source <(fzf --zsh)
 eval "$(starship init zsh)"
 eval "$(zoxide init --cmd cd zsh)"

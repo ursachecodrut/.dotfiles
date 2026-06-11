@@ -1,0 +1,4 @@
+{{- $machine := promptStringOnce . "machine" "Machine name (macos-pdq/macos-personal)" -}}
+
+[data]
+    machine = {{ $machine | quote }}

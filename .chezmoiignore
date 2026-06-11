@@ -1,0 +1,12 @@
+# Files listed here are NOT applied on the matching machine.
+# Add machine-only files inside the opposite block.
+
+{{ if ne .machine "macos-pdq" }}
+# work-only files, e.g.:
+# .config/work-tool/
+{{ end }}
+
+{{ if ne .machine "macos-personal" }}
+# personal-only files, e.g.:
+# .config/personal-only.conf
+{{ end }}

@@ -1,0 +1,21 @@
+#!/bin/bash
+# Installs declared Homebrew packages on `chezmoi apply` whenever the
+# package list changes.
+# packages.yaml hash: {{ include ".chezmoidata/packages.yaml" | sha256sum }}
+set -eufo pipefail
+
+{{ $m := index .packages .machine -}}
+brew bundle --file=/dev/stdin <<EOF
+{{ range .packages.shared.taps }}tap {{ . | quote }}
+{{ end -}}
+{{ range .packages.shared.brews }}brew {{ . | quote }}
+{{ end -}}
+{{ range .packages.shared.casks }}cask {{ . | quote }}
+{{ end -}}
+{{ range $m.taps }}tap {{ . | quote }}
+{{ end -}}
+{{ range $m.brews }}brew {{ . | quote }}
+{{ end -}}
+{{ range $m.casks }}cask {{ . | quote }}
+{{ end -}}
+EOF
