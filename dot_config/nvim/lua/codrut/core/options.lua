@@ -6,7 +6,6 @@ opt.swapfile = false -- disable swap files
 
 -- appearance
 opt.title = true -- show current text that you are editing
-opt.background = "dark" -- tell vim what the background color looks like
 opt.signcolumn = "yes"
 opt.winborder = "rounded"
 

@@ -1,0 +1,4 @@
+[".config/herdr/plugins/vim-herdr-navigation"]
+type = "git-repo"
+url = "https://github.com/paulbkim-dev/vim-herdr-navigation.git"
+refreshPeriod = "168h"
