@@ -1,0 +1,24 @@
+# This is Git's per-user configuration file.
+[user]
+  name = Codrut-Stefan Ursache
+  email = ursache.codrut71@gmail.com
+	signingkey = /Users/codrut.ursache/.ssh/id_ed25519.pub
+[commit]
+	gpgsign = true
+[gpg]
+	format = ssh
+[gpg "ssh"]
+  allowedSignersFile = /Users/codrut.ursache/.ssh/allowed_signers
+
+[core]
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true  # use n and N to move between diff sections
+  dark = true      # or light = true, or omit for auto-detection
+
+[merge]
+  conflictStyle = zdiff3

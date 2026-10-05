@@ -1,0 +1,12 @@
+[tools]
+"aqua:remoteoss/dexter" = "latest"
+biome = "latest"
+colima = "latest"
+docker-cli = "latest"
+docker-compose = "latest"
+duckdb = "latest"
+elixir = "1.18.3-otp-27"
+erlang = "27.3.2"
+lima = "latest"
+node = "latest"
+postgres = "latest"
