@@ -25,12 +25,12 @@ return {
         }
       },
       ruff = {},
-      uv = {},
       ty = {},
       ts_ls = {},
       eslint = {},
       biome = {},
       tinymist = {},
+      pkl = {},
       dexter = {
         cmd = { 'dexter', 'lsp' },
         root_markers = { '.dexter/dexter.db', '.dexter.db', '.git', 'mix.exs' },
@@ -52,10 +52,41 @@ return {
             },
           },
         },
+      },
+      clangd = {},
+      beancount = {
+        cmd = { "beancount-language-server", "--stdio" },
+        root_markers = { "main.bean", ".git" },
+        init_options = {
+          journal_file = "main.bean",
+          diagnostic_flags = { "!" },
+          completion = {
+            fuzzy_match_accounts = true, -- cross-segment fuzzy matching (default: false)
+          },
+        },
+        settings = {
+          beancount = {
+            formatting = {
+              prefix_width = 30,
+              currency_column = 60,
+              number_currency_spacing = 1,
+            }
+          }
+        }
       }
     }
 
+    -- Never re-diagnose a half-typed line; sort so the real error wins the virtual text slot.
+    vim.diagnostic.config({
+      update_in_insert = false,
+      severity_sort = true,
+    })
+
     vim.keymap.set("n", "<leader>bf", vim.lsp.buf.format, { desc = "Buffer format" })
+    vim.keymap.set("n", "<leader>lr", function()
+      vim.lsp.enable(vim.tbl_keys(servers), false)
+      vim.lsp.enable(vim.tbl_keys(servers), true)
+    end, { desc = "LSP restart" })
 
     vim.api.nvim_create_autocmd("LspAttach", {
       callback = function(event)
@@ -86,8 +117,8 @@ return {
     })
 
     for name, config in pairs(servers) do
-      vim.lsp.enable(name)
       vim.lsp.config(name, config)
+      vim.lsp.enable(name)
     end
   end,
 }

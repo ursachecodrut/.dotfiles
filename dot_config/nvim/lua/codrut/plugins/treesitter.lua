@@ -3,6 +3,7 @@
 local parsers = {
   'arduino',
   'bash',
+  'beancount',
   'c',
   'cmake',
   'comment',
@@ -43,6 +44,7 @@ local parsers = {
   'markdown_inline',
   'mermaid',
   'nginx',
+  'pkl',
   'promql',
   'python',
   'query',

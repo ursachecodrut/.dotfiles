@@ -1,34 +1,50 @@
 packages:
   darwin:
     shared:
-      taps: []
+      taps:
+        - railwaycat/emacsmacport
       brews:
         - bat
         - beancount
         - btop
         - chezmoi
+        - coreutils
+        - cosign
         - csvkit
         - eza
         - fastfetch
         - fd
         - fzf
+        - gdb
         - gh
+        - git-delta
+        - gnupg
         - gum
+        - herdr
         - hf
         - htop
         - imagemagick
+        - lazygit
         - mise
         - ncdu
         - neovim
+        - pipes-sh
+        - pipx
+        - powershell
+        - pre-commit
         - python@3.12
         - qemu
+        - railwaycat/emacsmacport/emacs-mac@29
+        - redis
         - ripgrep
         - starship
         - tpm
         - tree-sitter-cli
         - typst
         - unbound
+        - wget
         - wireguard-tools
+        - wxwidgets
         - zoxide
         - zsh-autosuggestions
         - zsh-syntax-highlighting
@@ -45,13 +61,22 @@ packages:
         - stats
         - visual-studio-code
         - android-platform-tools
+        - adobe-acrobat-reader
+        - brave-browser
+        - ghostty
+        - iterm2
+        - syncthing-app
+        - vorssaint
+        - zen
     macos-pdq:
       taps:
+        - launchdarkly/tap
         - withgraphite/tap
       brews:
         - colima
         - docker
         - docker-compose
+        - ldcli
         - withgraphite/tap/graphite
       casks:
         - discord
@@ -60,6 +85,8 @@ packages:
         - linear
         - slack
         - zoom
+        - linear-linear
+        - signal
     macos-personal:
       taps: []
       brews: []

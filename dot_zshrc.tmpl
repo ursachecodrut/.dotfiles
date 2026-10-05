@@ -10,7 +10,7 @@ export VISUAL=nvim
 export TERM=xterm-256color
 export ERL_AFLAGS="-kernel shell_history enabled"
 export GPG_TTY=$(tty)
-
+export GITHUB_TOKEN="$(gh auth token 2>/dev/null)"
 
 ulimit -n 8192
 
@@ -45,8 +45,19 @@ alias gap='git add -p'
 
 alias cat='bat'
 
+wtcd() {
+  local line d
+  line=$(git worktree list \
+      | fzf --height=~40% --layout=reverse --border=rounded \
+            --info=inline --prompt='worktree> ') || return
+  d=${line%% *}
+  cd "$d"
+}
+
 {{ if eq .machine "macos-pdq" -}}
 export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
+export LD_PROJECT="houston"
+source <(ldcli completion zsh)
 {{ else if eq .machine "macos-personal" -}}
 # macos-personal only
 {{ end -}}
@@ -55,3 +66,5 @@ source <(fzf --zsh)
 eval "$(starship init zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(mise activate zsh)"
+
+export PATH="$HOME/.local/share/mise/installs/node/latest/bin:$PATH"

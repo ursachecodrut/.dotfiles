@@ -50,3 +50,7 @@ opt.iskeyword:append("-")
 
 -- set backupcopy to "yes"
 opt.backupcopy = "yes"
+
+-- load rc from external path
+vim.opt.exrc = true
+vim.opt.secure = true
