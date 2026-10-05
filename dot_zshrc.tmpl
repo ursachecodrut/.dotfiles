@@ -62,6 +62,16 @@ source <(ldcli completion zsh)
 # macos-personal only
 {{ end -}}
 
+# fzf colors follow macOS appearance; re-checked each prompt (~13ms)
+_fzf_theme() {
+  if [[ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" == Dark ]]; then
+    export FZF_DEFAULT_OPTS="--color=dark"
+  else
+    export FZF_DEFAULT_OPTS="--color=light"
+  fi
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd _fzf_theme
 source <(fzf --zsh)
 eval "$(starship init zsh)"
 eval "$(zoxide init --cmd cd zsh)"

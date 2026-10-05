@@ -7,7 +7,7 @@ set -eufo pipefail
 {{ $d := index .packages "darwin" | default (dict) -}}
 {{ $shared := index $d "shared" | default (dict) -}}
 {{ $m := index $d .machine | default (dict) -}}
-brew bundle --file=/dev/stdin <<EOF
+brew bundle --no-upgrade --file=/dev/stdin <<EOF
 {{ range concat (index $shared "taps" | default list) (index $m "taps" | default list) }}tap {{ . | quote }}
 {{ end -}}
 {{ range concat (index $shared "brews" | default list) (index $m "brews" | default list) }}brew {{ . | quote }}

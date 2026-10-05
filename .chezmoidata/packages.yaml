@@ -19,7 +19,6 @@ packages:
         - gh
         - git-delta
         - gnupg
-        - gum
         - herdr
         - hf
         - htop
@@ -58,26 +57,19 @@ packages:
         - kitty
         - obsidian
         - raycast
-        - stats
         - visual-studio-code
         - android-platform-tools
         - adobe-acrobat-reader
         - brave-browser
         - ghostty
-        - iterm2
         - syncthing-app
         - vorssaint
         - zen
     macos-pdq:
       taps:
         - launchdarkly/tap
-        - withgraphite/tap
       brews:
-        - colima
-        - docker
-        - docker-compose
         - ldcli
-        - withgraphite/tap/graphite
       casks:
         - discord
         - tailscale-app
@@ -85,7 +77,6 @@ packages:
         - linear
         - slack
         - zoom
-        - linear-linear
         - signal
     macos-personal:
       taps: []
